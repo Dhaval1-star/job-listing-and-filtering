@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <title>Frontend Mentor | Job Listings</title>
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Spartan:wght@500;700&display=swap');
+    ::-webkit-scrollbar {
+      width: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      border-radius: 10px;
+      background-color: hsl(180, 52%, 96%);
+    }
+ 
+    ::-webkit-scrollbar-thumb {
+      background: hsl(180, 29%, 50%); 
+      border-radius: 10px; 
+    }
+    *{
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+      font-family: 'Spartan', sans-serif;
+    }
+    .container{
+      width: 100%;
+      height: auto;
+    }
+    .container .image{
+      position: relative;
+      width: 100%;
+      height: 20vh;
+      background-image: url(images/bg-header-desktop.svg);
+      background-color: hsl(180, 29%, 50%);
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+    }
+    .image form{
+      position: absolute;
+      top: calc(100% + 40px/2);
+      left: 50%;
+      transform: translateX(-50%) translateY(-100%);
+      max-width: 80%;
+      min-width: 80%;
+      height: 40px;
+      background-color: brown;
+    }
+    form input{
+      width: 100%;
+      height: 100%;
+      border: none;
+      padding: 0px 10px;
+    }
+    input:focus{
+      border: none;
+      outline: none;
+    }
+    .container .items-container{
+      width: 100%;
+      height: auto;
+      background-color: hsl(180, 52%, 96%);
+      padding: 10px;
+    }
+    .items-container .item{
+      max-width:80%;
+      min-width: 80%;
+      height: 20vh;
+      background-color: white;
+      margin: 20px auto;
+      padding: 10px;
+      box-shadow: 0px 0px 20px 1px hsl(180, 9%, 89%);
+      display: flex;
+      align-items: center;
+      transition: all 0.2s ease;
+    }
+    .item:hover{
+      border-left: 5px solid hsl(180, 29%, 50%);
+      border-radius: 5px;
+    }
+    .item .item-image{
+      width: min-content;
+      height: 100%;
+      display: grid;
+      margin: 0px 15px 0px 20px;
+      place-items: center;
+    }
+    .item .item-info{
+      width: 40%;
+    }
+    .item-info .com-name, .com-opportunity, .com-time{
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+    .com-name, .com-opportunity{
+      font-size: 15px;
+    }
+    .com-name h4, span{
+      margin-right: 20px;
+      text-transform: capitalize;
+    }
+    .com-name h4{
+      color: hsl(180, 29%, 50%);
+    }
+    .com-opportunity h1{
+      font-size: 20px;
+      text-transform: capitalize;
+      font-weight: 700;
+      margin: 12px 0px 10px 0px;
+    }
+    .com-name span{
+      color: white;
+      font-size: 13px;
+      padding: 8px 10px 5px 10px;
+      border-radius: 50px;
+    }
+    .com-time{
+      position: relative;
+      width: 80%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 15px;
+      font-weight: 500;
+      color: hsl(180, 8%, 52%);
+      height: max-content;
+    }
+    .com-time span{
+      position: relative;
+    }
+    .com-time span:first-child::before{
+      content: '';
+      width: 5px;
+      height: 5px;
+      background-color: currentColor;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: calc(100% + 37%);
+      border-radius: 50%;
+    }
+    .com-time span:last-child::before{
+      content: '';
+      width: 5px;
+      height: 5px;
+      background-color: currentColor;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: calc(0% - 30%);
+      border-radius: 50%;
+    }
+    .item .item-language{
+      width: 50%;
+      margin-right: 25px;
+      text-align: right;
+    }
+    .item-language span{
+      background-color: hsla(180, 29%, 50%, 0.3);
+      color: hsl(180, 29%, 50%);
+      font-weight: 500;
+      font-size: 15px;
+      padding: 9px 6px 6px 6px;
+    }
+    @media screen and (max-width: 768px) {
+
+      .container .item{
+        max-width:90%;
+      min-width: 90%;
+      }
+      .item-info{
+        width: 70%;
+      }
+      .item .item-language{
+        width: 100%;
+      margin: 0px 10px;
+      display: flex;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+    .item-language span{
+      margin-bottom: 10px;
+    }
+    .item-info .com-time{
+      width: 100%;
+      justify-content: space-evenly;
+    }
+    .item-info .com-time span{
+      width: 100%;
+    }
+    }
+    @media screen and (max-width: 480px) {
+      .container .image{
+      background-image: url(images/bg-header-mobile.svg);
+    }
+    .items-container .item{
+      position: relative;
+      max-width:90%;
+      min-width: 90%;
+      height: auto;
+      margin-top: 30px;
+      margin-bottom: 40px;
+      padding: 35px 5px 5px 5px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.2s ease;
+    }
+    .item .item-image{
+      position: absolute;
+      top: calc(-30px);
+      left: 0px;
+      width: 60px;
+      height: 60px;
+      margin: 0px 15px 0px 20px;
+    }
+    .item-image img{
+      width: 100%;
+      height: 100%;
+    }
+    .item .item-info{
+      width: 90%;
+      padding-bottom: 10px;
+      border-bottom: 1px solid hsl(180, 8%, 52%);
+    }
+    .item-info .com-name, .com-opportunity, .com-time{
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+    .com-name{
+      font-size: 14px;
+    }
+    .com-opportunity h1{
+      font-size: 18px;
+    }
+    .com-time{
+      width: 100%;
+    }
+    .com-time span{
+      width: 100%;
+      margin:0px ;
+    }
+    .com-time span:first-child::before{
+      left: calc(100% - 30%);
+    }
+    .com-time span:last-child::before{
+      top: 50%;
+      left: calc(0% - 15%);
+    }
+    .item .item-language{
+      width: 90%;
+      margin: 20px 50px;
+      text-align: left;
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+    }
+    .item-language span{
+      margin-bottom: 10px;
+    }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="image">
+      <form>
+        <input type="text" placeholder="search for keyword . . .   ">
+      </form>
+    </div>
+    <div class="items-container">
+      <div class="item item-1">
+        <div class="item-image">
+          <img src="images/eyecam-co.svg" alt="eyecam-co">
+        </div> 
+        <div class="item-info">
+          <div class="com-name"><h4>account</h4> <span style="background-color: hsl(180, 29%, 50%);">New</span> <span style="background-color: hsl(180, 14%, 20%);">Featured</span></div>
+          <div class="com-opportunity"><h1>Frontend developer</h1></div>
+          <div class="com-time"><span>2d ago</span> <span>part-time</span>
+          <span>world wide</span></div>
+        </div>
+        <div class="item-language">
+          <span>front end</span>
+          <span>html</span>
+          <span>css</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let items = document.querySelector(".items-container");
+    async function apifetch() {
+      try {
+        const first = await fetch('./data.json');
+        const data = await first.json();
+        data.forEach(element => {
+          let node = `
+          <div class="item items${element.id}">
+            <div class="item-image">
+              <img src="${element.logo}" alt="Dhaval">
+            </div>
+            <div class="item-info">
+              <div class="com-name"> <h4>${element.company}</h4>${element.new == true ? `<span style="background-color: hsl(180, 29%, 50%);">New</span>` :  ''}
+              ${element.featured == true ? `<span style="background-color: hsl(180, 14%, 20%);">Featured</span>` : ''}  </div>
+              <div class="com-opportunity"><h1>${element.position}</h1></div>
+              <div class="com-time"><span>${element.postedAt}</span> <span>${element.contract}</span>
+              <span>${element.location}</span></div>
+            </div>
+            <div class="item-language">
+                 ${(element.languages).map((ele) => {
+                   return '<span>'+ele+'</span>';
+                 })}
+            </div>
+          </div>`;
+              items.insertAdjacentHTML('beforeend',node);
+            });
+          } catch (error) {
+            console.log("error is " + error);
+          }
+        }
+    apifetch();
+  </script>
+</body>
+</html>
